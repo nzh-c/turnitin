@@ -20,16 +20,19 @@ class BaseService
     public function __construct()
     {
         $this->configBuild();
-
-        if (!isset($this->config['webhook_settings']) || empty($this->config['webhook_settings']))
-        {
-            throw new TurnitinRuntimeException(TurnitinEnum::WEBHOOK_SETTING_FAILED);
-        }
     }
 
     public function getConfig(): array
     {
         return $this->config;
+    }
+
+    protected function checkWebhookSetting()
+    {
+        if (!isset($this->config['webhook_settings']) || empty($this->config['webhook_settings']))
+        {
+            throw new TurnitinRuntimeException(TurnitinEnum::WEBHOOK_SETTING_FAILED);
+        }
     }
 
     private function camelToWords(string $input): string
@@ -92,10 +95,10 @@ class BaseService
     {
         $this->config = require __DIR__.'/../../config/turnitin.php';
 
-//        if (strpos(App::VERSION, '6.') === 0) {
-//            $this->config = array_merge($this->config, Config::get('turnitin') ?? []);
-//        } else {
-//            $this->config = array_merge($this->config, Config::get('turnitin.') ?? []);
-//        }
+        if (strpos(App::VERSION, '6.') === 0) {
+            $this->config = array_merge($this->config, Config::get('turnitin') ?? []);
+        } else {
+            $this->config = array_merge($this->config, Config::get('turnitin.') ?? []);
+        }
     }
 }

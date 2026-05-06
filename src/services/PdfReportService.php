@@ -19,6 +19,7 @@ class PdfReportService extends BaseService
     public function __construct(HttpClient $http)
     {
         parent::__construct();
+        parent::checkWebhookSetting();
         $this->http = $http;
     }
 
