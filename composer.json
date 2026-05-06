@@ -1,0 +1,38 @@
+{
+    "name": "nzh-c/turnitin",
+    "description": "A library to use turnitin API easier and faster, to check and prevent plagiarism",
+    "type": "library",
+    "license": "MIT",
+    "extra": {
+      "think": {
+        "services": [
+          "NzhC\\Turnitin\\TurnitinService"
+        ],
+        "config": {
+          "turnitin": "config/turnitin.php"
+        }
+      }
+    },
+    "autoload": {
+      "psr-4": {
+        "NzhC\\Turnitin\\": "src/"
+      }
+    },
+    "authors": [
+        {
+            "name": "ningzehong",
+            "email": "ningzehong@live.com"
+        }
+    ],
+    "require": {
+      "ext-curl": "*",
+      "topthink/framework": "^6.0.0",
+      "ext-json": "*"
+    },
+    "repositories": {
+      "packagist": {
+        "type": "composer",
+        "url": "https://repo.packagist.org"
+      }
+    }
+}
