@@ -20,5 +20,5 @@ return [
     'callback' => env('TURNITIN_CALLBACK'),
     'webhook_description' => env('TURNITIN_WEBHOOK_DESCRIPTION','oss webhook'),
     'event_types' => env('TURNITIN_EVENT_TYPES','SUBMISSION_COMPLETE,SIMILARITY_COMPLETE,SIMILARITY_UPDATED,PDF_STATUS,GROUP_ATTACHMENT_COMPLETE'),
-    'webhook_settings' => env('WEBHOOK_SETTINGS'),
+    'webhook_settings' => env('TURNITIN_WEBHOOK_SETTINGS'),
 ];
