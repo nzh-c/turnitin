@@ -16,9 +16,9 @@ class PdfReportService extends BaseService
 
     private string $url = 'api/v1/submissions/%s/similarity/pdf';
 
-    public function __construct(HttpClient $http)
+    public function __construct(HttpClient $http,array $config = [])
     {
-        parent::__construct();
+        parent::__construct($config);
         parent::checkWebhookSetting();
         $this->http = $http;
     }

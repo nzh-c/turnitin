@@ -19,9 +19,9 @@ class SubmissionService extends BaseService
     private HttpClient $http;
 
     private string $submissionUrl = 'api/v1/submissions';
-    public function __construct(HttpClient $http)
+    public function __construct(HttpClient $http,array $config = [])
     {
-        parent::__construct();
+        parent::__construct($config);
         parent::checkWebhookSetting();
         $this->http = $http;
     }

@@ -16,9 +16,9 @@ class ReportDownloadService extends BaseService
 
     private string $downloadApi = 'api/v1/submissions/%s/similarity/pdf/%s';
 
-    public function __construct(HttpClient $http)
+    public function __construct(HttpClient $http,array $config = [])
     {
-        parent::__construct();
+        parent::__construct($config);
         parent::checkWebhookSetting();
         $this->http = $http;
     }

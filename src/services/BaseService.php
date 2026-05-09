@@ -10,16 +10,14 @@ namespace NzhC\Turnitin\services;
 use NzhC\Turnitin\enum\TurnitinEnum;
 use NzhC\Turnitin\exception\TurnitinParameterException;
 use NzhC\Turnitin\exception\TurnitinRuntimeException;
-use think\App;
-use think\facade\Config;
 
 class BaseService
 {
-    protected array $config;
+    protected array $config = [];
 
-    public function __construct()
+    public function __construct(array $config = [])
     {
-        $this->configBuild();
+        $this->configBuild($config);
     }
 
     public function getConfig(): array
@@ -91,14 +89,46 @@ class BaseService
         return $headers;
     }
 
-    protected function configBuild():void
+    protected function configBuild(array $config = []):void
     {
-        $this->config = require __DIR__.'/../../config/turnitin.php';
+        $defaultConfig = require __DIR__ . '/../../config/turnitin.php';
 
-        if (strpos(App::VERSION, '6.') === 0) {
-            $this->config = array_merge($this->config, Config::get('turnitin') ?? []);
-        } else {
-            $this->config = array_merge($this->config, Config::get('turnitin.') ?? []);
+        $this->config = array_merge(
+            $defaultConfig,
+            $this->getFrameworkConfig(),
+            $config
+        );
+    }
+
+    protected function getFrameworkConfig(): array
+    {
+        if (class_exists(\think\facade\Config::class)) {
+
+            try {
+
+                if (
+                    class_exists(\think\App::class)
+                    && strpos(\think\App::VERSION, '6.') === 0
+                ) {
+                    return \think\facade\Config::get('turnitin') ?? [];
+                }
+
+                return \think\facade\Config::get('turnitin.') ?? [];
+
+            } catch (\Throwable $e) {
+                return [];
+            }
         }
+
+        if (function_exists('config')) {
+
+            try {
+                return config('turnitin', []);
+            } catch (\Throwable $e) {
+                return [];
+            }
+        }
+
+        return [];
     }
 }

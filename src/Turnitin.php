@@ -20,9 +20,12 @@ class Turnitin
 {
     private HttpClient $http;
 
-    public function __construct()
+    private array $config;
+
+    public function __construct(array $config = [])
     {
         $this->http = new HttpClient();
+        $this->config = $config;
     }
 
     /**
@@ -56,7 +59,7 @@ class Turnitin
      */
     public function createSubmission($title,array $customData = []): array
     {
-        $submissionService = new SubmissionService($this->http);
+        $submissionService = new SubmissionService($this->http,$this->config);
         return $submissionService->createSubmission($title,$customData);
     }
 
@@ -71,7 +74,7 @@ class Turnitin
      */
     public function uploadFile(string $fileName,string $filePath,string $similarityCheckId)
     {
-        $uploadFileService = new UploadFileService($this->http);
+        $uploadFileService = new UploadFileService($this->http,$this->config);
         return $uploadFileService->uploadFile($fileName,$filePath,$similarityCheckId);
     }
 
@@ -84,7 +87,7 @@ class Turnitin
      */
     public function createReport(string $similarityCheckId)
     {
-        $createReportService = new SimilarityReportService($this->http);
+        $createReportService = new SimilarityReportService($this->http,$this->config);
         return $createReportService->create($similarityCheckId);
     }
 
@@ -97,7 +100,7 @@ class Turnitin
      */
     public function createPdfReport(string $similarityCheckId)
     {
-        $pfeReportService = new PdfReportService($this->http);
+        $pfeReportService = new PdfReportService($this->http,$this->config);
         return $pfeReportService->create($similarityCheckId);
     }
 
@@ -112,7 +115,7 @@ class Turnitin
      */
     public function downloadPdfReport(string $savePath,string $similarityCheckId,string $pdfId)
     {
-        $uploadFileService = new ReportDownloadService($this->http);
+        $uploadFileService = new ReportDownloadService($this->http,$this->config);
         return $uploadFileService->download($savePath,$similarityCheckId,$pdfId);
     }
 }

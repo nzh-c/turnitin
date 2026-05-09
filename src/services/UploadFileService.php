@@ -16,9 +16,9 @@ class UploadFileService extends BaseService
 
     private string $uploadApi = 'api/v1/submissions/%s/original';
 
-    public function __construct(HttpClient $http)
+    public function __construct(HttpClient $http,array $config = [])
     {
-        parent::__construct();
+        parent::__construct($config);
         parent::checkWebhookSetting();
         $this->http = $http;
     }
