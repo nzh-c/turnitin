@@ -24,7 +24,7 @@ if (!function_exists('turnitin_env')) {
 return [
 
     'base_url' => turnitin_env(
-        'TURNITIN_ASE_URL',
+        'TURNITIN_BASE_URL',
         'https://crossref-22835.tii-sandbox.com/'
     ),
 
