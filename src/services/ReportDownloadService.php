@@ -23,7 +23,7 @@ class ReportDownloadService extends BaseService
         $this->http = $http;
     }
 
-    public function download(string $pdfSavePath,string $similarityCheckId,string $similarityReportId)
+    public function download(string $pdfSavePath,string $similarityCheckId,string $similarityReportId): array
     {
 
         $downloadUrl = sprintf($this->downloadApi, $similarityCheckId,$similarityReportId);
@@ -34,8 +34,6 @@ class ReportDownloadService extends BaseService
 
         $headers = $this->getHeaders(TurnitinEnum::DOWNLOAD_PDF_HEADER_TYPE);
 
-        $returnData = $this->http->download($downloadPdfUrl,$pdfSavePath,$headers);
-
-        return $returnData['data'] ?? [];
+        return $this->http->download($downloadPdfUrl,$pdfSavePath,$headers);
     }
 }
