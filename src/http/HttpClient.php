@@ -33,7 +33,7 @@ class HttpClient
             throw new TurnitinRequestException(TurnitinEnum::FAILED_CREATE_DIRECTORY.$dir);
         }
 
-        $tmpPath = $savePath . '.tmp';
+        $tmpPath = $savePath . '.' . uniqid('', true) . '.tmp';
 
         $lastError = null;
 
@@ -65,7 +65,13 @@ class HttpClient
             fclose($fp);
 
             if ($curlErrno === 0 && $httpCode >= 200 && $httpCode < 300) {
-                rename($tmpPath, $savePath);
+                if (!@rename($tmpPath, $savePath)) {
+                    @unlink($tmpPath);
+
+                    throw new TurnitinRequestException(
+                        'Failed to move tmp file'
+                    );
+                }
 
                 return [
                     'success' => true,
