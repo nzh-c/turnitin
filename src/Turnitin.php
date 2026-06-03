@@ -15,6 +15,7 @@ use NzhC\Turnitin\services\ReportDownloadService;
 use NzhC\Turnitin\services\SimilarityReportService;
 use NzhC\Turnitin\services\SubmissionService;
 use NzhC\Turnitin\services\UploadFileService;
+use NzhC\Turnitin\services\ViewerUrlService;
 
 class Turnitin
 {
@@ -117,5 +118,18 @@ class Turnitin
     {
         $uploadFileService = new ReportDownloadService($this->http,$this->config);
         return $uploadFileService->download($savePath,$similarityCheckId,$pdfId);
+    }
+
+    /**
+     * @notes viewerReportUrl
+     * @param string $similarityCheckId
+     * @return array|mixed
+     * @author n
+     * @date 2026/6/3
+     */
+    public function viewerReportUrl(string $similarityCheckId)
+    {
+        $viewerUrlService = new ViewerUrlService($this->http,$this->config);
+        return $viewerUrlService->create($similarityCheckId);
     }
 }

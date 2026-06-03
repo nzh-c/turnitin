@@ -72,6 +72,7 @@ class BaseService
             case TurnitinEnum::CREATE_REPORT_HEADER_TYPE:
             case TurnitinEnum::WEBHOOKS_DEL_HEADER_TYPE:
             case TurnitinEnum::CREATE_PDF_REPORT_HEADER_TYPE:
+            case TurnitinEnum::VIEWER_URL_HEADER_TYPE:
                 $headers = array_merge($defaultHeaders, [
                     'Content-Type:application/json'
                 ], $data ?? []);
