@@ -41,6 +41,9 @@ class SimilarityReportService extends BaseService
     private function buildData():array
     {
         return [
+            'indexing_settings'=>[
+                'add_to_index' => true
+            ],
             'generation_settings' => [
                 'search_repositories' => [
                     'INTERNET',

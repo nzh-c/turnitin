@@ -40,12 +40,6 @@ return [
 
     'submitter_default_permission_set' => turnitin_env('TURNITIN_SUBMITTER_DEFAULT_PERMISSION_SET'),
 
-    'given_name' => turnitin_env('TURNITIN_GIVEN_NAME'),
-
-    'family_name' => turnitin_env('TURNITIN_FAMILY_NAME'),
-
-    'email' => turnitin_env('TURNITIN_EMAIL'),
-
     'signing_secret' => turnitin_env('TURNITIN_SIGNING_SECRET'),
 
     'callback' => turnitin_env('TURNITIN_CALLBACK'),

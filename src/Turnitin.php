@@ -52,16 +52,21 @@ class Turnitin
     /**
      * @notes createSubmission
      * @param $title
+     * @param array $authors
+     * @param array $submitter
      * @param array $customData
      * @return array
      * @throws \Exception
      * @author n
      * @date 2026/4/28
      */
-    public function createSubmission($title,array $customData = []): array
+    public function createSubmission($title,
+                                     array $authors,
+                                     array $submitter,
+                                     array $customData = []): array
     {
         $submissionService = new SubmissionService($this->http,$this->config);
-        return $submissionService->createSubmission($title,$customData);
+        return $submissionService->createSubmission($title,$authors,$submitter,$customData);
     }
 
     /**
