@@ -17,6 +17,8 @@ class TurnitinEnum
 
     const SUBMISSION_HEADER_TYPE = 'SUBMISSION';
 
+    const GET_SUBMISSION_INFO_TYPE = 'GET_SUBMISSION_INFO';
+
     const CANNOT_OPEN_OR_WRITING_FILE = 'Cannot open file for writing: ';
 
     const FAILED_CREATE_DIRECTORY = 'Failed to create directory';

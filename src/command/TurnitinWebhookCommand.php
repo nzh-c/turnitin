@@ -20,6 +20,14 @@ class TurnitinWebhookCommand extends Command
 {
     private string $type;
 
+    /**
+     * @notes configure
+     * @author n
+     * @date 2026/6/9
+     * php think turnitin:webhook del --id=2bb5b986-ee6f-49bf-aaa9-c735b789dcd2
+     * php think turnitin:webhook create
+     * php think turnitin:webhook list
+     */
     public function configure()
     {
         $this->setName('turnitin:webhook')

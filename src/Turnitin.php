@@ -70,6 +70,19 @@ class Turnitin
     }
 
     /**
+     * @notes getSubmissionInfo
+     * @param string $similarityCheckId
+     * @return array
+     * @author n
+     * @date 2026/6/9
+     */
+    public function getSubmissionInfo(string $similarityCheckId): array
+    {
+        $submissionService = new SubmissionService($this->http,$this->config);
+        return $submissionService->getSubmissionInfo($similarityCheckId);
+    }
+
+    /**
      * @notes uploadFile
      * @param string $fileName
      * @param string $filePath

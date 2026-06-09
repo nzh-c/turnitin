@@ -52,6 +52,24 @@ class SubmissionService extends BaseService
     }
 
     /**
+     * @notes getSubmissionInfo
+     * @param string $submissionId
+     * @return array
+     * @author n
+     * @date 2026/6/9
+     */
+    public function getSubmissionInfo(string $submissionId): array
+    {
+        $getSubmissionInfoUrl = $this->config['base_url'] ? $this->config['base_url']. $this->submissionUrl .DIRECTORY_SEPARATOR.$submissionId: '';
+
+        $headers = $this->getHeaders(TurnitinEnum::GET_SUBMISSION_INFO_TYPE);
+
+        $returnData = $this->http->curlRequest($getSubmissionInfoUrl,'GET',$headers);
+
+        return $returnData['data'] ?? [];
+    }
+
+    /**
      * @throws Exception
      */
     private function buildData(string $title,
