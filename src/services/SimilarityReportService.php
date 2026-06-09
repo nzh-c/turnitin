@@ -38,6 +38,25 @@ class SimilarityReportService extends BaseService
         return $returnData['data'] ?? [];
     }
 
+    /**
+     * @notes getReportInfo
+     * @param string $similarityCheckId
+     * @return array
+     * @author n
+     * @date 2026/6/9
+     */
+    public function getReportInfo(string $similarityCheckId):array
+    {
+        $reportUrl = sprintf($this->url, $similarityCheckId);
+        $getReportInfoUrl = $this->config['base_url'] ? $this->config['base_url'].$reportUrl : '';
+
+        $headers = $this->getHeaders(TurnitinEnum::GET_REPORT_INFO_TYPE);
+
+        $returnData = $this->http->curlRequest($getReportInfoUrl,'GET',$headers);
+
+        return $returnData['data'] ?? [];
+    }
+
     private function buildData():array
     {
         return [

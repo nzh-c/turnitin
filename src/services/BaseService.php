@@ -68,6 +68,7 @@ class BaseService
         switch ($type) {
             case TurnitinEnum::SUBMISSION_HEADER_TYPE:
             case TurnitinEnum::GET_SUBMISSION_INFO_TYPE:
+            case TurnitinEnum::GET_REPORT_INFO_TYPE:
             case TurnitinEnum::REGISTRATION_WEBHOOKS_HEADER_TYPE:
             case TurnitinEnum::WEBHOOKS_LISTS_HEADER_TYPE:
             case TurnitinEnum::CREATE_REPORT_HEADER_TYPE:

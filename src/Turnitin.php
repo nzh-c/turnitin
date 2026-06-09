@@ -111,6 +111,19 @@ class Turnitin
     }
 
     /**
+     * @notes getReportInfo
+     * @param string $similarityCheckId
+     * @return array
+     * @author n
+     * @date 2026/6/9
+     */
+    public function getReportInfo(string $similarityCheckId): array
+    {
+        $createReportService = new SimilarityReportService($this->http,$this->config);
+        return $createReportService->getReportInfo($similarityCheckId);
+    }
+
+    /**
      * @notes createReportPdf
      * @param string $similarityCheckId
      * @return array|mixed
