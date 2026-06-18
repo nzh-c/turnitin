@@ -61,7 +61,7 @@ class SimilarityReportService extends BaseService
     {
         return [
             'indexing_settings'=>[
-                'add_to_index' => true
+                'add_to_index' => $this->config['add_to_index'] ?? false,
             ],
             'generation_settings' => [
                 'search_repositories' => [
