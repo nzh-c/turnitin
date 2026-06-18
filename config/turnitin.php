@@ -38,6 +38,8 @@ return [
 
     'add_to_index' => turnitin_env('TURNITIN_ADD_TO_INDEX'),
 
+    'exclude_submitted_works' => turnitin_env('TURNITIN_EXCLUDE_SUBMITTED_WORKS'),
+
     'owner_default_permission_set' => turnitin_env('TURNITIN_OWNER_DEFAULT_PERMISSION_SET'),
 
     'submitter_default_permission_set' => turnitin_env('TURNITIN_SUBMITTER_DEFAULT_PERMISSION_SET'),

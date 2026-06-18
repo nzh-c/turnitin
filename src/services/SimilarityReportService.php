@@ -87,7 +87,7 @@ class SimilarityReportService extends BaseService
                 'exclude_publications' => false,
                 'exclude_crossref' => false,
                 'exclude_crossref_posted_content' => false,
-                'exclude_submitted_works' => false,
+                'exclude_submitted_works' => $this->config['exclude_submitted_works'] ?? false,
             ],
         ];
     }
